@@ -24,7 +24,8 @@ RUN usermod -u 999 plex
 RUN usermod -g 100 plex
 
 VOLUME /config
-VOLUME /data
+VOLUME /mnt/array1/Public
+VOLUME /mnt/array2/Public
 
 EXPOSE 32400
 
