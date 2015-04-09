@@ -23,7 +23,7 @@ RUN bash /installplex.sh
 RUN usermod -u 999 plex
 RUN usermod -g 100 plex
 
-VOLUME /config
+VOLUME /mnt/plex_config
 VOLUME /mnt/array1/Public
 VOLUME /mnt/array2/Public
 
