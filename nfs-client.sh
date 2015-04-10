@@ -2,7 +2,7 @@
 
 set -e
 
-mounts="${@}"
+mounts=( "$@" )
 targets=()
 
 rpcbind
