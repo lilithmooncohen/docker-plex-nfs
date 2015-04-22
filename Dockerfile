@@ -18,7 +18,7 @@ RUN apt-get -q update
 RUN apt-get install -qy gdebi-core wget nfs-common inotify-tools
 
 # Add necessary scripts
-ADD plex-nfs-configure.sh /usr/local/bin/plex-nfs-configure
+ADD nfs-configure.sh /usr/local/bin/nfs-configure
 ADD plexmediaserver /default_plexmediaserver
 ADD firstrun.sh /etc/my_init.d/firstrun.sh
 ADD plex.sh /etc/service/plex/run
