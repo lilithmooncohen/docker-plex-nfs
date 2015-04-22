@@ -19,10 +19,15 @@ RUN apt-get install -qy gdebi-core wget nfs-common inotify-tools
 
 # Add necessary scripts
 ADD plex-nfs-configure.sh /usr/local/bin/plex-nfs-configure
-ADD installplex.sh /
 ADD plexmediaserver /default_plexmediaserver
 ADD firstrun.sh /etc/my_init.d/firstrun.sh
 ADD plex.sh /etc/service/plex/run
+
+# Correct permissions on firstrun.sh to execute during container startup
+RUN chmod +x /etc/my_init.d/firstrun.sh
+
+# Add Plex to runit
+RUN chmod +x /etc/service/plex/run
 
 EXPOSE 32400
 

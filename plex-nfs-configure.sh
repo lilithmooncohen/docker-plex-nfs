@@ -43,22 +43,3 @@ for argument in "${arguments[@]}"; do
   fi
 done
 
-# Install Plex
-bash installplex.sh
-
-# Replace default config with our own
-cat /default_plexmediaserver > /etc/default/plexmediaserver
-
-
-# Fix a Debianism of plex's uid being 101
-usermod -u 999 plex
-usermod -g 100 plex
-
-# Correct permissions on firstrun.sh to execute during container startup
-chmod +x /etc/my_init.d/firstrun.sh
-
-# Add Plex to runit
-chmod +x /etc/service/plex/run
-
-# Start Plex
-/etc/service/plex/run

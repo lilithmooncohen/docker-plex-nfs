@@ -23,11 +23,15 @@ else
     # Don't uninstall the old version of plex if the download fails
     wget -q "${PLEX_URL}" -O /tmp/plexmediaserver_${PLEX_VERSION}_amd64.deb
     if [ $? -eq 0 ]; then
-        mv /etc/default/plexmediaserver /tmp/
         apt-get remove --purge -y plexmediaserver
         gdebi -n /tmp/plexmediaserver_${PLEX_VERSION}_amd64.deb
-        mv /tmp/plexmediaserver /etc/default/
+        # Replace default config with our own
+        cat /default_plexmediaserver > /etc/default/plexmediaserver
+        # Fix a Debianism of plex's uid being 101
+        usermod -u 999 plex
+        usermod -g 100 plex
         rm -f /tmp/plexmediaserver_${PLEX_VERSION}_amd64.deb
+        /etc/service/plex/run
         echo $PLEX_VERSION > /tmp/version
     else
         echo "Download failed, please try again later"
