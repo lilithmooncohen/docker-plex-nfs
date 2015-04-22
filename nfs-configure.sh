@@ -42,3 +42,6 @@ for argument in "${arguments[@]}"; do
     i=$((i + 1))
   fi
 done
+
+#Install Plex and start
+/etc/my_init.d/firstrun.sh

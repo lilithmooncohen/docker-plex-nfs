@@ -18,6 +18,7 @@ if [ -z "$PLEX_VERSION" ]; then
 fi
 if [ "$PLEX_VERSION" = "$INSTALLED" ]; then
     echo "Version not changed - $PLEX_VERSION"
+    /etc/service/plex/run
 else
     echo "Updating to $PLEX_VERSION from $INSTALLED"
     # Don't uninstall the old version of plex if the download fails
