@@ -42,4 +42,3 @@ for argument in "${arguments[@]}"; do
     i=$((i + 1))
   fi
 done
-
