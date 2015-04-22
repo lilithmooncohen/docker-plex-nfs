@@ -31,4 +31,4 @@ RUN chmod +x /etc/service/plex/run
 
 EXPOSE 32400
 
-ENTRYPOINT ["/usr/local/bin/plex-nfs-configure"]
+ENTRYPOINT ["/usr/local/bin/nfs-configure"]
