@@ -13,21 +13,19 @@ CMD ["/sbin/my_init"]
 # chfn workaround - Known issue within Dockers
 RUN ln -s -f /bin/true /usr/bin/chfn
 
-# Install Dependencies
-RUN apt-get -q update
-RUN apt-get install -qy gdebi-core wget nfs-common inotify-tools
-
 # Add necessary scripts
 ADD nfs-configure.sh /usr/local/bin/nfs-configure
 ADD plexmediaserver /default_plexmediaserver
 ADD firstrun.sh /etc/my_init.d/firstrun.sh
 ADD plex.sh /etc/service/plex/run
 
+# Install Dependencies
 # Correct permissions on firstrun.sh to execute during container startup
-RUN chmod +x /etc/my_init.d/firstrun.sh
-
 # Add Plex to runit
-RUN chmod +x /etc/service/plex/run
+RUN apt-get -q update && \
+	apt-get install -qy gdebi-core wget nfs-common inotify-tools && \
+	chmod +x /etc/my_init.d/firstrun.sh && \
+	chmod +x /etc/service/plex/run
 
 EXPOSE 32400
 
