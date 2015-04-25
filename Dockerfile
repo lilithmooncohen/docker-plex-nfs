@@ -20,7 +20,7 @@ ADD firstrun.sh /etc/my_init.d/firstrun.sh
 ADD plex.sh /etc/service/plex/run
 
 # Install Dependencies
-# Correct permissions on firstrun.sh to execute during container startup
+# Correct permissions on firstrun.sh to execute during startup
 # Add Plex to runit
 RUN apt-get -q update && \
 	apt-get install -qy gdebi-core wget nfs-common inotify-tools && \
