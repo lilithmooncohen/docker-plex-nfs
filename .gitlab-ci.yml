@@ -1,8 +1,0 @@
-docker:
-  tags:
-    - docker
-  build: "docker build hub.stratospire.com:5000/testola/&CI_BUILD_REPO:&CI_BUILD_ID
-  latest: "docker tag hub.stratospire.com:5000/testola/&CI_BUILD_REPO:latest"
-  push:
-    - "docker push hub.stratospire.com:5000/testola/&CI_BUILD_REPO:&CI_BUILD_ID"
-    -  "docker push hub.stratospire.com:5000/testola/&CI_BUILD_REPO:latest"
