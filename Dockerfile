@@ -1,21 +1,16 @@
-FROM phusion/baseimage:0.9.16
+FROM ryanckoch/plex
 
 ENV DEBIAN_FRONTEND noninteractive
 
 ENV HOME /root
 
+RUN apt-get update && \
+    apt-get install -y nfs-common inotify-tools && \
+		rm -rf /var/lib/apt/lists/*
+
 ADD nfs-configure.sh /usr/local/bin/nfs-configure
-ADD plexmediaserver /default_plexmediaserver
-ADD firstrun.sh /etc/my_init.d/firstrun.sh
-ADD plex.sh /etc/service/plex/run
 
-RUN ln -s -f /bin/true /usr/bin/chfn && \
-	apt-get -q update && \
-	apt-get install -qy gdebi-core wget nfs-common inotify-tools && \
-	chmod +x /etc/my_init.d/firstrun.sh && \
-	chmod +x /etc/service/plex/run
-
-CMD ["/sbin/my_init"]
+RUN chmod +x /usr/local/bin/nfs-configure
 
 EXPOSE 32400
 
